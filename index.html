@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaybee Art Studio | Creative Masterpieces</title>
+    <style>
+        /* Color Palette & Reset */
+        :root {
+            --primary-purple: #7a4bbd; /* Rich purple */
+            --light-purple: #f3efff;  /* Very soft purple background */
+            --accent-purple: #9c7fde; /* Lighter purple accent */
+            --white: #ffffff;
+            --text-main: #333333;
+            --text-light: #666666;
+            --shadow: 0 4px 15px rgba(122, 75, 189, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--text-main);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+
+        /* Standardized Section Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        /* Navigation */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 5px rgba(122, 75, 189, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--primary-purple);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-purple);
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: var(--light-purple);
+            height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            margin-top: 60px; /* Offset for fixed nav */
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            color: var(--primary-purple);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-light);
+            margin-bottom: 35px;
+            max-width: 650px;
+            font-weight: 400;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-purple);
+            color: var(--white);
+            padding: 14px 35px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 30px;
+            font-size: 16px;
+            text-transform: uppercase;
+            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 10px rgba(122, 75, 189, 0.2);
+        }
+
+        .btn:hover {
+            background-color: var(--accent-purple);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(122, 75, 189, 0.3);
+        }
+
+        /* Art Gallery Section (White Background) */
+        .gallery {
+            background-color: var(--white);
+        }
+
+        .section-title {
+            font-size: 38px;
+            margin-bottom: 50px;
+            color: var(--primary-purple);
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: var(--accent-purple);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .art-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--light-purple);
+        }
+
+        .art-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(122, 75, 189, 0.15);
+        }
+
+        .art-card img {
+            width: 100%;
+            height: 280px; /* Fixed height for consistency */
+            object-fit: cover;
+            display: block;
+        }
+
+        .art-details {
+            padding: 20px;
+            text-align: left;
+        }
+
+        .art-title {
+            font-size: 18px;
+            color: var(--primary-purple);
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .art-meta {
+            font-size: 14px;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        /* Services Section (Light Purple Background) */
+        .services {
+            background-color: var(--light-purple);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-box {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            border-top: 4px solid transparent;
+        }
+
+        .service-box:hover {
+            transform: translateY(-5px);
+            border-top: 4px solid var(--primary-purple);
+        }
+
+        .service-box h3 {
+            margin-bottom: 15px;
+            color: var(--primary-purple);
+            font-size: 22px;
+        }
+
+        /* Contact Section (White Background) */
+        .contact {
+            background-color: var(--white);
+        }
+
+        .contact-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            background: var(--white);
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(122, 75, 189, 0.06);
+            border: 1px solid var(--light-purple);
+        }
+
+        .contact-info {
+            text-align: left;
+        }
+
+        .contact-info h2 {
+            color: var(--primary-purple);
+            margin-bottom: 25px;
+            font-size: 34px;
+        }
+
+        .contact-info p {
+            margin-bottom: 18px;
+            font-size: 16px;
+            color: var(--text-light);
+        }
+
+        .contact-info strong {
+            color: var(--primary-purple);
+        }
+
+        .contact-info a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: var(--primary-purple);
+        }
+
+        .contact-form {
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary-purple);
+            font-size: 14px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: var(--light-purple);
+            color: var(--text-main);
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--accent-purple);
+        }
+
+        .submit-btn {
+            background-color: var(--primary-purple);
+            color: var(--white);
+            border: none;
+            padding: 16px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 10px rgba(122, 75, 189, 0.15);
+        }
+
+        .submit-btn:hover {
+            background-color: var(--accent-purple);
+            box-shadow: 0 6px 15px rgba(122, 75, 189, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-purple);
+            color: var(--white);
+            text-align: center;
+            padding: 30px;
+            font-size: 14px;
+        }
+
+        footer p {
+            opacity: 0.9;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 42px; }
+            .hero p { font-size: 18px; }
+            .contact-container { grid-template-columns: 1fr; padding: 30px; gap: 30px; }
+            .container { padding: 60px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header/Navigation -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">Jaybee Art Studio</div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Jaybee Art Studio</h1>
+        <p>Bringing imagination to life through vibrant colors, unique textures, and breathtaking custom artwork.</p>
+        <a href="#contact" class="btn">Explore Collections</a>
+    </section>
+
+    <!-- Art Gallery Section -->
+    <section id="gallery" class="gallery container">
+        <h2 class="section-title">The Collection</h2>
+        <div class="gallery-grid">
+            
+            <!-- Art Card 1 (image.png) -->
+            <div class="art-card">
+                <img src="image.png" alt="Jaybee Art Studio - Artwork 1">
+                <div class="art-details">
+                    <h3 class="art-title">Abstract Dimensions I</h3>
+                    <p class="art-meta">Acrylic on Canvas, 2023</p>
+                </div>
+            </div>
+
+            <!-- Art Card 2 (image_2.png) -->
+            <div class="art-card">
+                <img src="image_2.png" alt="Jaybee Art Studio - Artwork 2">
+                <div class="art-details">
+                    <h3 class="art-title">Urban Dreams</h3>
+                    <p class="art-meta">Mixed Media, 2024</p>
+                </div>
+            </div>
+
+            <!-- Art Card 3 (image_3.png) -->
+            <div class="art-card">
+                <img src="image_3.png" alt="Jaybee Art Studio - Artwork 3">
+                <div class="art-details">
+                    <h3 class="art-title">Serenity Flow</h3>
+                    <p class="art-meta">Oil on Canvas, 2023</p>
+                </div>
+            </div>
+
+            <!-- Art Card 4 (image_4.png) -->
+            <div class="art-card">
+                <img src="image_4.png" alt="Jaybee Art Studio - Artwork 4">
+                <div class="art-details">
+                    <h3 class="art-title">Cosmic Visions</h3>
+                    <p class="art-meta">Digital Painting, 2024</p>
+                </div>
+            </div>
+
+            <!-- Art Card 5 (image_5.png) -->
+            <div class="art-card">
+                <img src="image_5.png" alt="Jaybee Art Studio - Artwork 5">
+                <div class="art-details">
+                    <h3 class="art-title">Nature's Pulse</h3>
+                    <p class="art-meta">Watercolor, 2023</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services container">
+        <h2 class="section-title">Our Craft</h2>
+        <div class="services-grid">
+            <div class="service-box">
+                <h3>Custom Paintings</h3>
+                <p>Beautiful oil, acrylic, and watercolor paintings designed specifically to match your space and vision.</p>
+            </div>
+            <div class="service-box">
+                <h3>Portraits</h3>
+                <p>Highly detailed, professional portrait commissions that capture the true essence of your loved ones.</p>
+            </div>
+            <div class="service-box">
+                <h3>Wall Murals</h3>
+                <p>Transform your residential or commercial walls with stunning, large-scale custom art installations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact container">
+        <div class="contact-container">
+            
+            <!-- Contact Details -->
+            <div class="contact-info">
+                <h2>Let's Talk Art</h2>
+                <p>Have a project in mind, want to purchase a piece, or discuss a commission? Reach out directly!</p>
+                <p><strong>Email:</strong><br><a href="mailto:olanrewajujoseph606@gmail.com">olanrewajujoseph606@gmail.com</a></p>
+                <p><strong>Phone:</strong><br><a href="tel:+2347035214327">+234 703 521 4327</a></p>
+                <p><strong>WhatsApp:</strong><br><a href="https://wa.me/2347035214327" target="_blank">Message Us</a></p>
+            </div>
+
+            <!-- Form -->
+            <div class="contact-form">
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Project Details</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Describe your vision..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Inquiry</button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Jaybee Art Studio. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
